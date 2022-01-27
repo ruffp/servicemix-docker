@@ -1,0 +1,31 @@
+
+ld = { log:display $args } ;
+lde = { log:exception-display $args } ;
+la = { bundle:list -t 0 $args } ;
+ls = { service:list $args } ;
+cl = { config:list "(service.pid=$args)" } ;
+halt = { system:shutdown -h -f $args } ;
+help = { *:help $args | more } ;
+man = { help $args } ;
+log:list = { log:get ALL } ;
+service:get = { $.context getService ($.context getServiceReference $args) } ;
+// ESI Specific aliases
+lgi = {bundle:list | grep -i $args } ;
+l = {bundle:list} ;
+watch = { shell:command-watch $args } ;
+chk = { bundle:list | grep -i "(fail|grace|creating|stopping|resolved)" } ;
+hgi = { shell:history | grep -i $args} ;
+
+// package:* aliases
+package:export = { packages:exports $args } ;
+package:import = { packages:imports $args } ;
+
+// feature:* aliases
+fi = { feature:install $args } ;
+fl = { feature:list $args } ;
+fu = { feature:uninstall $args } ;
+radd = { feature:repo-add $args } ;
+rrm = { feature:repo-remove $args } ;
+rrf = { feature:repo-refresh $args  } ;
+rl = { feature:repo-list $args  } ;
+rlgi = { feature:repo-list | grep -i  $args } ;

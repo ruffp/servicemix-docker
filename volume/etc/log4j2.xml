@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="5">
+    <Appenders>
+        <!-- ServiceMix log -->
+        <RollingFile name="servicemix_appender"
+                     fileName="data/log/servicemix.log"
+                     filePattern="data/log/servicemix.%d{yyyy-MM-dd}-%i.log">
+            <ThresholdFilter level="TRACE"/>
+            <PatternLayout pattern="%d{ISO8601} | %-5.5p | %-16.16t | %-32.32c{1} | %X{bundle.id} - %X{bundle.name} - %X{bundle.version} | %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="30 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy compressionLevel="5" max="10"/>
+        </RollingFile>
+
+        <!-- ServiceMix json -->
+        <RollingFile name="servicemix_json_appender"
+                     fileName="data/log/servicemix.json"
+                     filePattern="data/log/servicemix.%d{yyyy-MM-dd}-%i.json">
+            <ThresholdFilter level="DEBUG"/>
+            <JSONLayout complete="false" compact="true" eventEol="true" objectMessageAsJsonObject="true"
+                        properties="true" locationInfo="false" includeStacktrace="true"
+                        stacktraceAsString="true">
+                <KeyValuePair key="@timestamp" value="${date:yyyy-MM-dd'T'HH:mm:ss.SSSX}"/>
+                <KeyValuePair key="sys" value="servicemix" />
+                <KeyValuePair key="host" value="docker-${env:HOSTNAME}"/>
+            </JSONLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="30 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy compressionLevel="5" max="10"/>
+        </RollingFile>
+
+        <RollingFile name="servicemix_json_new_appender"
+                     fileName="data/log/servicemix-new.json"
+                     filePattern="data/log/servicemix-new.%d{yyyy-MM-dd}-%i.json">
+            <ThresholdFilter level="DEBUG"/>
+            <JsonTemplateLayout eventTemplateUri="classpath:JsonLayout.json"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy compressionLevel="5" max="10"/>
+        </RollingFile>
+
+    </Appenders>
+
+    <Loggers>
+        <Logger name="org.apache.activemq" level="INFO"/>
+        <Logger name="org.apache.camel.component.file.FileConsumer" level="INFO" />
+        <Logger name="org.apache.cxf.services" level="WARN"/>
+        <Logger name="org.apache.http" level="INFO"/>
+        <Logger name="org.apache.servicemix.bundles" level="TRACE"/>
+        <Logger name="org.apache.sshd" level="INFO" additivity="false"/>
+        <Logger name="shaded.org.apache" level="WARN"/>
+        <Logger name="org.mongodb" level="WARN"/>
+        <Root level="TRACE">
+            <AppenderRef ref="servicemix_appender"/>
+            <AppenderRef ref="servicemix_json_appender"/>
+            <AppenderRef ref="servicemix_json_new_appender"/>
+        </Root>
+    </Loggers>
+</Configuration>

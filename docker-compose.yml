@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  servicemix:
+    container_name: servicemix-7.0.1
+    build: .
+    image: servicemix-7.0.1
+    ports:
+      - 127.0.0.1:8181:8181
+      - 127.0.0.1:8101:8101
+      - 127.0.0.1:5025:5005
+    volumes:
+      - ./volume/data:/opt/apache-servicemix/data
+      - ./volume/etc:/opt/apache-servicemix/etc
+#      - ~/.m2/repository:/opt/apache-servicemix/local-repo

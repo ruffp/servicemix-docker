@@ -1,18 +1,27 @@
-Apache ServiceMix Docker image
-==============================
+# Apache ServiceMix Docker image
 
-Run
----
+# Content
 
-```bash
-docker run -d -t \
-  --name servicemix \
-  -p 1099:1099 \
-  -p 8101:8101 \
-  -p 8181:8181 \
-  -p 61616:61616 \
-  -p 36888:36888 \
-  -p 44444:44444 \
-  -v /host/path/deploy:/deploy \
-  mkroli/servicemix
-```
+Note: This docker compose execute a servicemix without the ActiveMQ part.
+It uses pax-logging-log4j2 with extras (necessary for jsonlayout).
+
+
+## Docker 
+
+For starting the container, just execute
+
+`docker compose up -d`
+
+and for rebuilding image: 
+
+`docker compose up -d --build --force-recreate`
+
+# Future improvements
+
+* Make the Log4j JsonTemplateLayout to work properly
+  https://issues.apache.org/jira/browse/LOG4J2-3356 
+  The current version of the lib is a snapshot where the above bug is fixed but the json log is not a json.
+  
+* Add ActiveMQ (or Artemis, or RabbitMQ, or zeroMQ) as a separate docker image but in the compose
+
+* 
