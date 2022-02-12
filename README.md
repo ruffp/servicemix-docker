@@ -10,7 +10,12 @@ It uses pax-logging-log4j2 with extras (necessary for jsonlayout).
 
 For starting the container, just execute
 
+`docker compose up`
+
+or stared as daemon:
+
 `docker compose up -d`
+
 
 and for rebuilding image: 
 
@@ -21,6 +26,7 @@ and for rebuilding image:
 * Make the Log4j JsonTemplateLayout to work properly
   https://issues.apache.org/jira/browse/LOG4J2-3356 
   The current version of the lib is a snapshot where the above bug is fixed but the json log is not a json.
+  
   
 * Add ActiveMQ (or Artemis, or RabbitMQ, or zeroMQ) as a separate docker image but in the compose
 

@@ -1,0 +1,54 @@
+Manifest-Version: 1.0
+Bundle-License: https://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: org.apache.logging.log4j.layout.template.json
+Log4jSigningUserName: mattsicker@apache.org
+Built-By: jenkins
+Bnd-LastModified: 1642946707581
+Implementation-Vendor-Id: org.apache.logging.log4j
+Specification-Title: Apache Log4j Layout for JSON template
+Log4jReleaseManager: Matt Sicker
+Bundle-DocURL: https://www.apache.org/
+Import-Package: org.apache.logging.log4j;version="[2.17,3)",org.apache
+ .logging.log4j.core;version="[2.17,3)",org.apache.logging.log4j.core.
+ config;version="[2.17,3)",org.apache.logging.log4j.core.config.plugin
+ s;version="[2.17,3)",org.apache.logging.log4j.core.config.plugins.con
+ vert;version="[2.17,3)",org.apache.logging.log4j.core.config.plugins.
+ util;version="[2.17,3)",org.apache.logging.log4j.core.layout;version=
+ "[2.17,3)",org.apache.logging.log4j.core.lookup;version="[2.17,3)",or
+ g.apache.logging.log4j.core.net;version="[2.17,3)",org.apache.logging
+ .log4j.core.time;version="[2.17,3)",org.apache.logging.log4j.core.uti
+ l;version="[2.17,3)",org.apache.logging.log4j.core.util.datetime;vers
+ ion="[2.17,3)",org.apache.logging.log4j.message;version="[2.17,3)",or
+ g.apache.logging.log4j.spi;version="[2.17,3)",org.apache.logging.log4
+ j.status;version="[2.17,3)",org.apache.logging.log4j.util;version="[2
+ .17,3)",org.jctools.queues;resolution:=optional
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Fragment-Host: org.apache.logging.log4j.core
+Export-Package: org.apache.logging.log4j.layout.template.json;version=
+ "2.17.2";uses:="org.apache.logging.log4j.core,org.apache.logging.log4
+ j.core.config,org.apache.logging.log4j.core.config.plugins,org.apache
+ .logging.log4j.core.layout,org.apache.logging.log4j.core.util"
+Bundle-Name: Apache Log4j Layout for JSON template
+Log4jReleaseVersionJava6: 2.3.2
+Multi-Release: true
+Log4jReleaseVersionJava7: 2.12.4
+Log4jReleaseVersion: 2.17.1
+Implementation-Title: Apache Log4j Layout for JSON template
+Bundle-Description: Apache Log4j Layout for JSON template.
+Implementation-Version: 2.17.2-SNAPSHOT
+Specification-Vendor: The Apache Software Foundation
+Bundle-ManifestVersion: 2
+Bundle-Vendor: The Apache Software Foundation
+Tool: Bnd-3.5.0.201709291849
+Implementation-Vendor: The Apache Software Foundation
+Originally-Created-By: Apache Maven Bundle Plugin
+Bundle-Version: 2.17.2.SNAPSHOT
+X-Compile-Target-JDK: 1.8
+X-Compile-Source-JDK: 1.8
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 1.8.0_291
+Specification-Version: 2.17.2-SNAPSHOT
+Implementation-URL: https://logging.apache.org/log4j/2.x/log4j-layout-
+ template-json/
+Log4jReleaseKey: D7C92B70FA1C814D
+

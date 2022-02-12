@@ -11,7 +11,7 @@ ENV SMX_SHA1="4854243f6b1aaf3c9ff7c08183c769ab6878b285"
 ENV SMX_HOME="/opt/apache-servicemix"
 
 ENV JACKSON_VERSION=2.12.4
-ENV PAX_LOGGING_VERSION=1.11.13
+ENV PAX_LOGGING_VERSION=1.11.15
 
 # Most of the install are for debugging purpose only, for production keep first and last line only
 RUN apt-get update && \
