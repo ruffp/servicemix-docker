@@ -11,9 +11,9 @@ ENV SMX_SHA1="4854243f6b1aaf3c9ff7c08183c769ab6878b285"
 ENV SMX_HOME="/opt/apache-servicemix"
 
 ENV JACKSON_VERSION=2.12.4
-ENV PAX_LOGGING_VERSION=1.11.15
+ENV LOG4J_VERSION=2.17.3
 
-# Most of the install are for debugging purpose only, for production keep first and last line only
+# Most of the install are for debugging purpose only, for production remove all apt-get
 RUN apt-get update && \
     apt-get install -y vim && \
     apt-get install -y nmap && \
@@ -42,11 +42,11 @@ COPY ./linux/bash_aliases.txt /tmp/.bash_aliases
 COPY ./smx/system/jackson-core-${JACKSON_VERSION}.jar $SMX_HOME/system/com/fasterxml/jackson/core/jackson-core/${JACKSON_VERSION}/jackson-core-${JACKSON_VERSION}.jar
 COPY ./smx/system/jackson-annotations-${JACKSON_VERSION}.jar $SMX_HOME/system/com/fasterxml/jackson/core/jackson-annotations/${JACKSON_VERSION}/jackson-annotations-${JACKSON_VERSION}.jar
 COPY ./smx/system/jackson-databind-${JACKSON_VERSION}.jar $SMX_HOME/system/com/fasterxml/jackson/core/jackson-databind/${JACKSON_VERSION}/jackson-databind-${JACKSON_VERSION}.jar
-COPY ./smx/system/pax-logging-api-${PAX_LOGGING_VERSION}.jar $SMX_HOME/system/org/ops4j/pax/logging/pax-logging-api/${PAX_LOGGING_VERSION}/pax-logging-api-${PAX_LOGGING_VERSION}.jar
-COPY ./smx/system/pax-logging-log4j2-${PAX_LOGGING_VERSION}.jar $SMX_HOME/system/org/ops4j/pax/logging/pax-logging-log4j2/${PAX_LOGGING_VERSION}/pax-logging-log4j2-${PAX_LOGGING_VERSION}.jar
-COPY ./smx/system/pax-logging-log4j2-extra-${PAX_LOGGING_VERSION}.jar $SMX_HOME/system/org/ops4j/pax/logging/pax-logging-log4j2-extra/${PAX_LOGGING_VERSION}/pax-logging-log4j2-extra-${PAX_LOGGING_VERSION}.jar
-COPY ./smx/system/log4j-core-2.17.2.jar $SMX_HOME/system/org/apache/logging/log4j/log4j-core/2.17.2/log4j-core-2.17.2.jar
-COPY ./smx/system/log4j-layout-template-json-2.17.2.jar $SMX_HOME/system/org/apache/logging/log4j/log4j-layout-template-json/2.17.2/log4j-layout-template-json-2.17.2.jar
+COPY ./smx/system/slf4j-api-1.7.25.jar $SMX_HOME/system/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar
+COPY ./smx/system/log4j-core-${LOG4J_VERSION}.jar $SMX_HOME/system/org/apache/logging/log4j/log4j-core/${LOG4J_VERSION}/log4j-core-${LOG4J_VERSION}.jar
+COPY ./smx/system/log4j-api-${LOG4J_VERSION}.jar $SMX_HOME/system/org/apache/logging/log4j/log4j-api/${LOG4J_VERSION}/log4j-api-${LOG4J_VERSION}.jar
+COPY ./smx/system/log4j-slf4j-impl-${LOG4J_VERSION}.jar $SMX_HOME/system/org/apache/logging/log4j/log4j-slf4j-impl/${LOG4J_VERSION}/log4j-slf4j-impl-${LOG4J_VERSION}.jar
+COPY ./smx/system/log4j-layout-template-json-${LOG4J_VERSION}.jar $SMX_HOME/system/org/apache/logging/log4j/log4j-layout-template-json/${LOG4J_VERSION}/log4j-layout-template-json-${LOG4J_VERSION}.jar
 
 # change ownership and permissions after COPY
 RUN chown -R smx:smx /opt/$SMX && \
@@ -54,11 +54,11 @@ RUN chown -R smx:smx /opt/$SMX && \
     chmod 644 $SMX_HOME/system/com/fasterxml/jackson/core/jackson-core/${JACKSON_VERSION}/jackson-core-${JACKSON_VERSION}.jar && \
     chmod 644 $SMX_HOME/system/com/fasterxml/jackson/core/jackson-annotations/${JACKSON_VERSION}/jackson-annotations-${JACKSON_VERSION}.jar && \
     chmod 644 $SMX_HOME/system/com/fasterxml/jackson/core/jackson-databind/${JACKSON_VERSION}/jackson-databind-${JACKSON_VERSION}.jar && \
-    chmod 644 $SMX_HOME/system/org/ops4j/pax/logging/pax-logging-api/${PAX_LOGGING_VERSION}/pax-logging-api-${PAX_LOGGING_VERSION}.jar && \
-    chmod 644 $SMX_HOME/system/org/ops4j/pax/logging/pax-logging-log4j2/${PAX_LOGGING_VERSION}/pax-logging-log4j2-${PAX_LOGGING_VERSION}.jar && \
-    chmod 644 $SMX_HOME/system/org/ops4j/pax/logging/pax-logging-log4j2-extra/${PAX_LOGGING_VERSION}/pax-logging-log4j2-extra-${PAX_LOGGING_VERSION}.jar && \
-    chmod 644 $SMX_HOME/system/org/apache/logging/log4j/log4j-core/2.17.2/log4j-core-2.17.2.jar && \
-    chmod 644 $SMX_HOME/system/org/apache/logging/log4j/log4j-layout-template-json/2.17.2/log4j-layout-template-json-2.17.2.jar
+    chmod 644 $SMX_HOME/system/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar && \
+    chmod 644 $SMX_HOME/system/org/apache/logging/log4j/log4j-core/${LOG4J_VERSION}/log4j-core-${LOG4J_VERSION}.jar && \
+    chmod 644 $SMX_HOME/system/org/apache/logging/log4j/log4j-api/${LOG4J_VERSION}/log4j-api-${LOG4J_VERSION}.jar && \
+    chmod 644 $SMX_HOME/system/org/apache/logging/log4j/log4j-slf4j-impl/${LOG4J_VERSION}/log4j-slf4j-impl-${LOG4J_VERSION}.jar && \
+    chmod 644 $SMX_HOME/system/org/apache/logging/log4j/log4j-layout-template-json/${LOG4J_VERSION}/log4j-layout-template-json-${LOG4J_VERSION}.jar
 
 USER smx
 
